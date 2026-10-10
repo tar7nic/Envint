@@ -1,0 +1,74 @@
+# One command:            docker compose up --build          (qdrant + ollama + index + API on :8000)
+# Tests (no services):    docker compose run --rm tests
+# Benchmarks:             docker compose run --rm benchmark
+# LLM robustness:         docker compose run --rm llm-robustness
+
+x-app: &app
+  build: .
+  image: envint-app          # one shared image for api, indexer, tests and benchmarks
+  environment: &env
+    QDRANT_URL: http://qdrant:6333
+    LLM_BASE_URL: http://ollama:11434/v1
+    LLM_MODEL: ${LLM_MODEL:-llama3.2:3b}
+    LLM_API_KEY: ${LLM_API_KEY:-ollama}
+    RERANKER_MODEL: ${RERANKER_MODEL:-BAAI/bge-reranker-base}
+  volumes:
+    - ./data:/app/data        # corpus, queries and benchmark results stay on your machine
+    - hf_cache:/models        # downloaded embedding/reranker models are cached here
+
+services:
+  qdrant:
+    image: qdrant/qdrant
+    ports: ["6333:6333"]
+    volumes: ["qdrant_data:/qdrant/storage"]
+
+  ollama:
+    image: ollama/ollama
+    ports: ["11434:11434"]
+    volumes: ["ollama_data:/root/.ollama"]
+
+  ollama-pull:                # one-shot: downloads the LLM into the ollama volume
+    image: ollama/ollama
+    depends_on: [ollama]
+    environment: { OLLAMA_HOST: "http://ollama:11434" }
+    entrypoint: ["/bin/sh", "-c"]
+    command: ["until ollama list >/dev/null 2>&1; do sleep 2; done; ollama pull ${LLM_MODEL:-llama3.2:3b}"]
+    restart: "no"
+
+  indexer:                    # one-shot: chunk + embed + upsert the corpus (idempotent)
+    <<: *app
+    depends_on: [qdrant]
+    command: ["sh", "-c", "python -m scripts.wait_for http://qdrant:6333/collections && python -m scripts.build_index"]
+    restart: "no"
+
+  api:
+    <<: *app
+    depends_on:
+      indexer: { condition: service_completed_successfully }
+      ollama-pull: { condition: service_completed_successfully }
+    ports: ["8000:8000"]
+
+  tests:                      # needs no other service: in-memory Qdrant + fakes
+    <<: *app
+    profiles: ["test"]
+    command: ["python", "-m", "pytest"]
+
+  benchmark:
+    <<: *app
+    profiles: ["benchmark"]
+    depends_on:
+      indexer: { condition: service_completed_successfully }
+    command: ["sh", "-c", "python -m benchmark.run_benchmark --split dev && python -m benchmark.run_benchmark --split eval && python -m benchmark.pareto data/results/benchmark_eval.json"]
+
+  llm-robustness:
+    <<: *app
+    profiles: ["benchmark"]
+    depends_on:
+      indexer: { condition: service_completed_successfully }
+      ollama-pull: { condition: service_completed_successfully }
+    command: ["python", "-m", "benchmark.llm_robustness", "--split", "eval"]
+
+volumes:
+  qdrant_data:
+  ollama_data:
+  hf_cache:
