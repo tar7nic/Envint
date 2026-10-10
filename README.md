@@ -1,4 +1,4 @@
-# Hybrid Retrieval & Reranking Benchmark
+# Hybrid Retrieval & Reranking Benchmark 
 
 A compliance Q&A engine over a (synthetic) hospital policy corpus that **compares three retrieval strategies** (vector-only, hybrid BM25+vector via custom RRF, hybrid + cross-encoder reranker), benchmarks them on a hard-negative query set with separate dev/eval splits, and tests how a downstream LLM behaves on each. Everything runs locally on free, open-source components.
 
@@ -201,11 +201,67 @@ Reported rather than hidden:
 ## 10. Project layout
 
 ```
-app/        api/ (FastAPI)  retrieval/ (vector, bm25, rrf, hybrid, reranker)  llm/ (client, prompts, guardrails, qa)
-            ingestion/ (chunker, indexer)  observability/ (tracing)  config.py  schemas.py
-benchmark/  metrics.py  run_benchmark.py  pareto.py  llm_robustness.py
-scripts/    build_index.py  wait_for.py  try_retrieval.py  show_diffs.py
-data/       corpus/  queries/{dev,eval}.jsonl  results/
-tests/      unit/ (34)  integration/ (11)  conftest.py
-Dockerfile  docker-compose.yml  .env.example  requirements.txt  pytest.ini  .github/workflows/ci.yml
+.
+├── .github/
+│   └── workflows/
+│       └── ci.yml
+├── app/
+│   ├── api/
+│   │   └── main.py              # FastAPI: /search /answer /health /metrics
+│   ├── ingestion/
+│   │   ├── chunker.py           # clause chunker + content hash
+│   │   └── indexer.py           # idempotent Qdrant upsert
+│   ├── llm/
+│   │   ├── client.py            # OpenAI-compatible client, retry/backoff
+│   │   ├── guardrails.py        # sanitising, refusal, citation checks
+│   │   ├── prompts.py           # system + user prompts
+│   │   └── qa.py                # retrieve -> LLM -> validate
+│   ├── observability/
+│   │   └── tracing.py           # per-step spans + metrics
+│   ├── retrieval/
+│   │   ├── base.py              # Retriever interface + errors
+│   │   ├── bm25.py              # BM25 (stemmed, clause IDs kept)
+│   │   ├── factory.py           # builds the 3 strategies
+│   │   ├── hybrid.py            # tier 2: BM25 + vector via RRF
+│   │   ├── reranker.py          # tier 3: + cross-encoder
+│   │   ├── rrf.py               # custom Reciprocal Rank Fusion
+│   │   └── vector.py            # tier 1: vector-only
+│   ├── config.py                # settings (env / .env)
+│   └── schemas.py               # payload, API and eval schemas
+├── benchmark/
+│   ├── llm_robustness.py        # LLM refusal/citation test
+│   ├── metrics.py               # P@k, R@k, MRR, NDCG, percentiles
+│   ├── pareto.py                # latency vs NDCG plot
+│   └── run_benchmark.py         # 3-strategy benchmark
+├── data/
+│   ├── corpus/  # POL-001 ... POL-010 (synthetic policy documents)
+│   └── queries/
+│       ├── dev.jsonl            # 8 queries (tuning)
+│       └── eval.jsonl           # 14 queries (final numbers)
+├── scripts/
+│   ├── build_index.py           # index the corpus
+│   ├── show_diffs.py            # inspect failing queries
+│   ├── try_retrieval.py         # compare the 3 tiers for one query
+│   └── wait_for.py              # wait for services (compose)
+├── tests/
+│   ├── integration/
+│   │   └── test_pipeline.py
+│   ├── unit/
+│   │   ├── test_chunker.py
+│   │   ├── test_guardrails.py
+│   │   ├── test_llm_client.py
+│   │   ├── test_metrics.py
+│   │   ├── test_retrievers.py
+│   │   └── test_rrf.py
+│   └── conftest.py              # fixtures: in-memory Qdrant + fakes
+├── .dockerignore
+├── .env.example
+├── .gitignore
+├── docker-compose.yml           # full stack, tests, benchmarks
+├── Dockerfile                   # app image (CPU torch)
+├── pytest.ini
+├── README.md
+└── requirements.txt
 ```
+
+Empty `__init__.py` files are omitted. `data/results/` (created when you run the benchmarks) holds the raw JSON and `pareto.png`.
