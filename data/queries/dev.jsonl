@@ -1,0 +1,8 @@
+{"query_id":"d01","query":"What does POL-005 clause 1.3 say about the nurse-to-patient ratio?","split":"dev","query_type":"exact_clause","relevant":{"POL-005#1.3":2,"POL-005#1.4":1},"answerable":true}
+{"query_id":"d02","query":"Which medications cannot be ordered verbally?","split":"dev","query_type":"hard_negative","relevant":{"POL-004#1.5":2,"POL-004#1.4":1},"answerable":true}
+{"query_id":"d03","query":"How quickly must triage be completed after arrival?","split":"dev","query_type":"numeric_threshold","relevant":{"POL-006#1.1":2},"answerable":true}
+{"query_id":"d04","query":"How long must we keep patient files?","split":"dev","query_type":"semantic","relevant":{"POL-007#1.1":2,"POL-007#1.2":1},"answerable":true}
+{"query_id":"d05","query":"Can platelets be kept in the fridge?","split":"dev","query_type":"hard_negative","relevant":{"POL-009#1.5":2,"POL-009#1.4":1},"answerable":true}
+{"query_id":"d06","query":"How often must ventilators be serviced?","split":"dev","query_type":"numeric_threshold","relevant":{"POL-008#1.2":2},"answerable":true}
+{"query_id":"d07","query":"Who can approve working extra hours?","split":"dev","query_type":"semantic","relevant":{"POL-005#1.5":2,"POL-005#1.1":1},"answerable":true}
+{"query_id":"d08","query":"What is the policy on parking fees for staff?","split":"dev","query_type":"unanswerable","relevant":{},"answerable":false}

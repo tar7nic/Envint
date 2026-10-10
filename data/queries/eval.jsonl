@@ -1,0 +1,14 @@
+{"query_id":"e01","query":"POL-001 clause 1.2","split":"eval","query_type":"exact_clause","relevant":{"POL-001#1.2":2},"answerable":true}
+{"query_id":"e02","query":"Vaccines must not be stored above 8°C","split":"eval","query_type":"hard_negative","relevant":{"POL-001#1.2":2,"POL-001#1.1":1},"answerable":true}
+{"query_id":"e03","query":"Within how many hours must a temperature excursion be reported?","split":"eval","query_type":"numeric_threshold","relevant":{"POL-001#2.1":2},"answerable":true}
+{"query_id":"e04","query":"Can a nurse complete discharge paperwork?","split":"eval","query_type":"hard_negative","relevant":{"POL-002#2.3":2,"POL-002#1.1":1},"answerable":true}
+{"query_id":"e05","query":"What is the target for hand hygiene compliance?","split":"eval","query_type":"numeric_threshold","relevant":{"POL-003#1.2":2},"answerable":true}
+{"query_id":"e06","query":"Are people with a cough allowed in patient areas?","split":"eval","query_type":"semantic","relevant":{"POL-010#1.5":2},"answerable":true}
+{"query_id":"e07","query":"What is the maximum nurse-to-patient ratio in intensive care?","split":"eval","query_type":"numeric_threshold","relevant":{"POL-005#1.4":2},"answerable":true}
+{"query_id":"e08","query":"What does POL-009 1.2 say about transfusion timing?","split":"eval","query_type":"exact_clause","relevant":{"POL-009#1.2":2},"answerable":true}
+{"query_id":"e09","query":"How should red blood cells be stored compared with platelets?","split":"eval","query_type":"hard_negative","relevant":{"POL-009#1.3":2,"POL-009#1.4":2},"answerable":true}
+{"query_id":"e10","query":"What happens if equipment fails a safety check?","split":"eval","query_type":"semantic","relevant":{"POL-008#1.4":2,"POL-008#2.1":1},"answerable":true}
+{"query_id":"e11","query":"Who must be told about a breach of patient data and how fast?","split":"eval","query_type":"semantic","relevant":{"POL-007#2.1":2},"answerable":true}
+{"query_id":"e12","query":"How long should an ambulance handover take?","split":"eval","query_type":"numeric_threshold","relevant":{"POL-006#2.2":2},"answerable":true}
+{"query_id":"e13","query":"What is the salary scale for senior consultants?","split":"eval","query_type":"unanswerable","relevant":{},"answerable":false}
+{"query_id":"e14","query":"Are pets allowed to visit patients?","split":"eval","query_type":"unanswerable","relevant":{},"answerable":false}

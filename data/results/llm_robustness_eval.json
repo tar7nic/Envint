@@ -1,0 +1,634 @@
+{
+  "split": "eval",
+  "llm_model": "llama3.2:3b",
+  "strategies": {
+    "vector": {
+      "n": 14,
+      "errors": 0,
+      "correct_refusal_rate": 1.0,
+      "false_refusal_rate": 0.16666666666666666,
+      "answers_cite_relevant_rate": 0.75,
+      "invalid_citation_rate": 0.0,
+      "uncited_answer_rate": 0.0,
+      "latency_p50_ms": 4212.825549999252,
+      "latency_p95_ms": 17665.60864999336,
+      "avg_prompt_tokens": 357.2142857142857,
+      "avg_completion_tokens": 28.857142857142858,
+      "rows": [
+        {
+          "query_id": "e01",
+          "query": "POL-001 clause 1.2",
+          "answerable": true,
+          "refused": true,
+          "cited": [],
+          "invalid_citations": [],
+          "answer": "[INSUFFICIENT_EVIDENCE]",
+          "cites_relevant": false,
+          "prompt_tokens": 351,
+          "completion_tokens": 9
+        },
+        {
+          "query_id": "e02",
+          "query": "Vaccines must not be stored above 8\u00b0C",
+          "answerable": true,
+          "refused": false,
+          "cited": [
+            "POL-001#1.2"
+          ],
+          "invalid_citations": [],
+          "answer": "This statement is supported by [POL-001#1.2], which states that vaccines must not be stored above 8\u00b0C for more than 30 minutes.",
+          "cites_relevant": true,
+          "prompt_tokens": 361,
+          "completion_tokens": 34
+        },
+        {
+          "query_id": "e03",
+          "query": "Within how many hours must a temperature excursion be reported?",
+          "answerable": true,
+          "refused": false,
+          "cited": [
+            "POL-001#2.1"
+          ],
+          "invalid_citations": [],
+          "answer": "According to [POL-001#2.1], a temperature excursion must be reported within 2 hours.",
+          "cites_relevant": true,
+          "prompt_tokens": 369,
+          "completion_tokens": 23
+        },
+        {
+          "query_id": "e04",
+          "query": "Can a nurse complete discharge paperwork?",
+          "answerable": true,
+          "refused": false,
+          "cited": [
+            "POL-002#2.3",
+            "POL-002#1.1"
+          ],
+          "invalid_citations": [],
+          "answer": "A nurse may complete discharge paperwork when the physician is unavailable [POL-002#2.3]. However, a physician's signature is required for discharge [POL-002#1.1], which may conflict with this statement.",
+          "cites_relevant": true,
+          "prompt_tokens": 349,
+          "completion_tokens": 47
+        },
+        {
+          "query_id": "e05",
+          "query": "What is the target for hand hygiene compliance?",
+          "answerable": true,
+          "refused": false,
+          "cited": [
+            "POL-003#1.2"
+          ],
+          "invalid_citations": [],
+          "answer": "The target for hand hygiene compliance is at least 95%, as stated in [POL-003#1.2].",
+          "cites_relevant": true,
+          "prompt_tokens": 360,
+          "completion_tokens": 25
+        },
+        {
+          "query_id": "e06",
+          "query": "Are people with a cough allowed in patient areas?",
+          "answerable": true,
+          "refused": false,
+          "cited": [
+            "POL-010#1.5"
+          ],
+          "invalid_citations": [],
+          "answer": "According to [POL-010#1.5], visitors with respiratory symptoms must not enter patient areas. This implies that people with a cough, which is a respiratory symptom, must not enter patient areas.",
+          "cites_relevant": true,
+          "prompt_tokens": 360,
+          "completion_tokens": 42
+        },
+        {
+          "query_id": "e07",
+          "query": "What is the maximum nurse-to-patient ratio in intensive care?",
+          "answerable": true,
+          "refused": false,
+          "cited": [
+            "POL-005#1.4"
+          ],
+          "invalid_citations": [],
+          "answer": "The maximum nurse-to-patient ratio in intensive care is 1:2, as stated in [POL-005#1.4].",
+          "cites_relevant": true,
+          "prompt_tokens": 363,
+          "completion_tokens": 29
+        },
+        {
+          "query_id": "e08",
+          "query": "What does POL-009 1.2 say about transfusion timing?",
+          "answerable": true,
+          "refused": true,
+          "cited": [],
+          "invalid_citations": [],
+          "answer": "INSUFFICIENT_EVIDENCE",
+          "cites_relevant": false,
+          "prompt_tokens": 367,
+          "completion_tokens": 7
+        },
+        {
+          "query_id": "e09",
+          "query": "How should red blood cells be stored compared with platelets?",
+          "answerable": true,
+          "refused": false,
+          "cited": [
+            "POL-009#1.3",
+            "POL-009#1.4"
+          ],
+          "invalid_citations": [],
+          "answer": "Red blood cells must be stored at 2\u00b0C to 6\u00b0C [POL-009#1.3]. Platelets must be stored at 20\u00b0C to 24\u00b0C with continuous agitation [POL-009#1.4]. These conditions conflict with each other.",
+          "cites_relevant": true,
+          "prompt_tokens": 357,
+          "completion_tokens": 56
+        },
+        {
+          "query_id": "e10",
+          "query": "What happens if equipment fails a safety check?",
+          "answerable": true,
+          "refused": false,
+          "cited": [
+            "POL-008#1.4",
+            "POL-008#2.1"
+          ],
+          "invalid_citations": [],
+          "answer": "According to [POL-008#1.4], equipment failing a safety test must be tagged out of service immediately. However, [POL-008#2.1] states that tagged equipment may return to service only after biomedical engineering approval.",
+          "cites_relevant": true,
+          "prompt_tokens": 353,
+          "completion_tokens": 50
+        },
+        {
+          "query_id": "e11",
+          "query": "Who must be told about a breach of patient data and how fast?",
+          "answerable": true,
+          "refused": false,
+          "cited": [
+            "POL-007#1.3"
+          ],
+          "invalid_citations": [],
+          "answer": "According to [POL-007#1.3], patient information must not be shared with third parties without written consent. However, there is no specific information on who must be told about a breach of patient data.",
+          "cites_relevant": false,
+          "prompt_tokens": 355,
+          "completion_tokens": 44
+        },
+        {
+          "query_id": "e12",
+          "query": "How long should an ambulance handover take?",
+          "answerable": true,
+          "refused": false,
+          "cited": [
+            "POL-006#2.2"
+          ],
+          "invalid_citations": [],
+          "answer": "According to [POL-006#2.2], an ambulance handover must be completed within 15 minutes.",
+          "cites_relevant": true,
+          "prompt_tokens": 350,
+          "completion_tokens": 24
+        },
+        {
+          "query_id": "e13",
+          "query": "What is the salary scale for senior consultants?",
+          "answerable": false,
+          "refused": true,
+          "cited": [],
+          "invalid_citations": [],
+          "answer": "INSUFFICIENT_EVIDENCE",
+          "cites_relevant": false,
+          "prompt_tokens": 358,
+          "completion_tokens": 7
+        },
+        {
+          "query_id": "e14",
+          "query": "Are pets allowed to visit patients?",
+          "answerable": false,
+          "refused": true,
+          "cited": [],
+          "invalid_citations": [],
+          "answer": "INSUFFICIENT_EVIDENCE",
+          "cites_relevant": false,
+          "prompt_tokens": 348,
+          "completion_tokens": 7
+        }
+      ]
+    },
+    "hybrid": {
+      "n": 14,
+      "errors": 0,
+      "correct_refusal_rate": 1.0,
+      "false_refusal_rate": 0.08333333333333333,
+      "answers_cite_relevant_rate": 0.9166666666666666,
+      "invalid_citation_rate": 0.0,
+      "uncited_answer_rate": 0.0,
+      "latency_p50_ms": 3717.9574000037974,
+      "latency_p95_ms": 5363.957930002653,
+      "avg_prompt_tokens": 357.2857142857143,
+      "avg_completion_tokens": 30.0,
+      "rows": [
+        {
+          "query_id": "e01",
+          "query": "POL-001 clause 1.2",
+          "answerable": true,
+          "refused": false,
+          "cited": [
+            "POL-001#1.2"
+          ],
+          "invalid_citations": [],
+          "answer": "[POL-001#1.2] states that vaccines must not be stored above 8\u00b0C for more than 30 minutes.",
+          "cites_relevant": true,
+          "prompt_tokens": 359,
+          "completion_tokens": 28
+        },
+        {
+          "query_id": "e02",
+          "query": "Vaccines must not be stored above 8\u00b0C",
+          "answerable": true,
+          "refused": false,
+          "cited": [
+            "POL-001#1.2"
+          ],
+          "invalid_citations": [],
+          "answer": "This statement is supported by [POL-001#1.2], which states that vaccines must not be stored above 8\u00b0C for more than 30 minutes.",
+          "cites_relevant": true,
+          "prompt_tokens": 368,
+          "completion_tokens": 34
+        },
+        {
+          "query_id": "e03",
+          "query": "Within how many hours must a temperature excursion be reported?",
+          "answerable": true,
+          "refused": false,
+          "cited": [
+            "POL-001#2.1"
+          ],
+          "invalid_citations": [],
+          "answer": "According to [POL-001#2.1], a temperature excursion must be reported within 2 hours.",
+          "cites_relevant": true,
+          "prompt_tokens": 367,
+          "completion_tokens": 23
+        },
+        {
+          "query_id": "e04",
+          "query": "Can a nurse complete discharge paperwork?",
+          "answerable": true,
+          "refused": false,
+          "cited": [
+            "POL-002#2.3"
+          ],
+          "invalid_citations": [],
+          "answer": "A nurse may complete discharge paperwork when the physician is unavailable, as stated in [POL-002#2.3]. However, it is also stated that a patient may be discharged only after a physician signs the discharge order, which implies that the physician's signature is typically required for discharge paperwork.",
+          "cites_relevant": true,
+          "prompt_tokens": 349,
+          "completion_tokens": 60
+        },
+        {
+          "query_id": "e05",
+          "query": "What is the target for hand hygiene compliance?",
+          "answerable": true,
+          "refused": false,
+          "cited": [
+            "POL-003#1.2"
+          ],
+          "invalid_citations": [],
+          "answer": "The target for hand hygiene compliance is at least 95%, as stated in [POL-003#1.2].",
+          "cites_relevant": true,
+          "prompt_tokens": 360,
+          "completion_tokens": 25
+        },
+        {
+          "query_id": "e06",
+          "query": "Are people with a cough allowed in patient areas?",
+          "answerable": true,
+          "refused": false,
+          "cited": [
+            "POL-010#1.5"
+          ],
+          "invalid_citations": [],
+          "answer": "According to [POL-010#1.5], visitors with respiratory symptoms must not enter patient areas. This implies that people with a cough, which is a respiratory symptom, are not allowed in patient areas.",
+          "cites_relevant": true,
+          "prompt_tokens": 350,
+          "completion_tokens": 43
+        },
+        {
+          "query_id": "e07",
+          "query": "What is the maximum nurse-to-patient ratio in intensive care?",
+          "answerable": true,
+          "refused": false,
+          "cited": [
+            "POL-005#1.4"
+          ],
+          "invalid_citations": [],
+          "answer": "The maximum nurse-to-patient ratio in intensive care is 1:2, as stated in [POL-005#1.4].",
+          "cites_relevant": true,
+          "prompt_tokens": 362,
+          "completion_tokens": 29
+        },
+        {
+          "query_id": "e08",
+          "query": "What does POL-009 1.2 say about transfusion timing?",
+          "answerable": true,
+          "refused": false,
+          "cited": [
+            "POL-009#1.2"
+          ],
+          "invalid_citations": [],
+          "answer": "[POL-009#1.2] states that blood products must be transfused within 4 hours of leaving controlled storage.",
+          "cites_relevant": true,
+          "prompt_tokens": 367,
+          "completion_tokens": 27
+        },
+        {
+          "query_id": "e09",
+          "query": "How should red blood cells be stored compared with platelets?",
+          "answerable": true,
+          "refused": false,
+          "cited": [
+            "POL-009#1.3",
+            "POL-009#1.4"
+          ],
+          "invalid_citations": [],
+          "answer": "Red blood cells must be stored at 2\u00b0C to 6\u00b0C [POL-009#1.3]. Platelets must be stored at 20\u00b0C to 24\u00b0C with continuous agitation [POL-009#1.4]. These conditions conflict with each other.",
+          "cites_relevant": true,
+          "prompt_tokens": 357,
+          "completion_tokens": 56
+        },
+        {
+          "query_id": "e10",
+          "query": "What happens if equipment fails a safety check?",
+          "answerable": true,
+          "refused": false,
+          "cited": [
+            "POL-008#1.4",
+            "POL-008#2.1"
+          ],
+          "invalid_citations": [],
+          "answer": "According to [POL-008#1.4], equipment failing a safety test must be tagged out of service immediately. However, [POL-008#2.1] states that tagged equipment may return to service only after biomedical engineering approval.",
+          "cites_relevant": true,
+          "prompt_tokens": 353,
+          "completion_tokens": 50
+        },
+        {
+          "query_id": "e11",
+          "query": "Who must be told about a breach of patient data and how fast?",
+          "answerable": true,
+          "refused": true,
+          "cited": [],
+          "invalid_citations": [],
+          "answer": "INSUFFICIENT_EVIDENCE",
+          "cites_relevant": false,
+          "prompt_tokens": 356,
+          "completion_tokens": 7
+        },
+        {
+          "query_id": "e12",
+          "query": "How long should an ambulance handover take?",
+          "answerable": true,
+          "refused": false,
+          "cited": [
+            "POL-006#2.2"
+          ],
+          "invalid_citations": [],
+          "answer": "According to [POL-006#2.2], an ambulance handover must be completed within 15 minutes.",
+          "cites_relevant": true,
+          "prompt_tokens": 350,
+          "completion_tokens": 24
+        },
+        {
+          "query_id": "e13",
+          "query": "What is the salary scale for senior consultants?",
+          "answerable": false,
+          "refused": true,
+          "cited": [],
+          "invalid_citations": [],
+          "answer": "INSUFFICIENT_EVIDENCE",
+          "cites_relevant": false,
+          "prompt_tokens": 358,
+          "completion_tokens": 7
+        },
+        {
+          "query_id": "e14",
+          "query": "Are pets allowed to visit patients?",
+          "answerable": false,
+          "refused": true,
+          "cited": [],
+          "invalid_citations": [],
+          "answer": "INSUFFICIENT_EVIDENCE",
+          "cites_relevant": false,
+          "prompt_tokens": 346,
+          "completion_tokens": 7
+        }
+      ]
+    },
+    "hybrid_rerank": {
+      "n": 14,
+      "errors": 0,
+      "correct_refusal_rate": 1.0,
+      "false_refusal_rate": 0.08333333333333333,
+      "answers_cite_relevant_rate": 0.75,
+      "invalid_citation_rate": 0.0,
+      "uncited_answer_rate": 0.09090909090909091,
+      "latency_p50_ms": 4254.260000001523,
+      "latency_p95_ms": 9330.621314988817,
+      "avg_prompt_tokens": 358.14285714285717,
+      "avg_completion_tokens": 24.071428571428573,
+      "rows": [
+        {
+          "query_id": "e01",
+          "query": "POL-001 clause 1.2",
+          "answerable": true,
+          "refused": true,
+          "cited": [],
+          "invalid_citations": [],
+          "answer": "INSUFFICIENT_EVIDENCE",
+          "cites_relevant": false,
+          "prompt_tokens": 352,
+          "completion_tokens": 7
+        },
+        {
+          "query_id": "e02",
+          "query": "Vaccines must not be stored above 8\u00b0C",
+          "answerable": true,
+          "refused": false,
+          "cited": [
+            "POL-001#1.2"
+          ],
+          "invalid_citations": [],
+          "answer": "[POL-001#1.2] states that vaccines must not be stored above 8\u00b0C for more than 30 minutes.",
+          "cites_relevant": true,
+          "prompt_tokens": 359,
+          "completion_tokens": 28
+        },
+        {
+          "query_id": "e03",
+          "query": "Within how many hours must a temperature excursion be reported?",
+          "answerable": true,
+          "refused": false,
+          "cited": [
+            "POL-001#2.1"
+          ],
+          "invalid_citations": [],
+          "answer": "According to [POL-001#2.1], a temperature excursion must be reported within 2 hours.",
+          "cites_relevant": true,
+          "prompt_tokens": 367,
+          "completion_tokens": 23
+        },
+        {
+          "query_id": "e04",
+          "query": "Can a nurse complete discharge paperwork?",
+          "answerable": true,
+          "refused": false,
+          "cited": [
+            "POL-002#2.3",
+            "POL-002#1.1"
+          ],
+          "invalid_citations": [],
+          "answer": "A nurse may complete discharge paperwork when the physician is unavailable, as stated in [POL-002#2.3]. However, a physician's signature is required on the discharge order before discharge, as stated in [POL-002#1.1].",
+          "cites_relevant": true,
+          "prompt_tokens": 350,
+          "completion_tokens": 52
+        },
+        {
+          "query_id": "e05",
+          "query": "What is the target for hand hygiene compliance?",
+          "answerable": true,
+          "refused": false,
+          "cited": [
+            "POL-003#1.2"
+          ],
+          "invalid_citations": [],
+          "answer": "The target for hand hygiene compliance is 95% [POL-003#1.2].",
+          "cites_relevant": true,
+          "prompt_tokens": 368,
+          "completion_tokens": 20
+        },
+        {
+          "query_id": "e06",
+          "query": "Are people with a cough allowed in patient areas?",
+          "answerable": true,
+          "refused": false,
+          "cited": [
+            "POL-010#2.1"
+          ],
+          "invalid_citations": [],
+          "answer": "They are not allowed. [POL-010#2.1] states that visitors with respiratory symptoms must not enter patient areas.",
+          "cites_relevant": false,
+          "prompt_tokens": 352,
+          "completion_tokens": 27
+        },
+        {
+          "query_id": "e07",
+          "query": "What is the maximum nurse-to-patient ratio in intensive care?",
+          "answerable": true,
+          "refused": false,
+          "cited": [
+            "POL-005#1.4"
+          ],
+          "invalid_citations": [],
+          "answer": "The maximum nurse-to-patient ratio in intensive care is 1:2, as stated in [POL-005#1.4].",
+          "cites_relevant": true,
+          "prompt_tokens": 363,
+          "completion_tokens": 29
+        },
+        {
+          "query_id": "e08",
+          "query": "What does POL-009 1.2 say about transfusion timing?",
+          "answerable": true,
+          "refused": false,
+          "cited": [
+            "POL-009#1.2"
+          ],
+          "invalid_citations": [],
+          "answer": "[POL-009#1.2] states that blood products must be transfused within 4 hours of leaving controlled storage.",
+          "cites_relevant": true,
+          "prompt_tokens": 362,
+          "completion_tokens": 27
+        },
+        {
+          "query_id": "e09",
+          "query": "How should red blood cells be stored compared with platelets?",
+          "answerable": true,
+          "refused": false,
+          "cited": [],
+          "invalid_citations": [],
+          "answer": "Red blood cells must be stored at 2\u00b0C to 6\u00b0C, whereas platelets must be stored at 20\u00b0C to 24\u00b0C.",
+          "cites_relevant": false,
+          "prompt_tokens": 363,
+          "completion_tokens": 31
+        },
+        {
+          "query_id": "e10",
+          "query": "What happens if equipment fails a safety check?",
+          "answerable": true,
+          "refused": false,
+          "cited": [
+            "POL-008#1.4"
+          ],
+          "invalid_citations": [],
+          "answer": "According to [POL-008#1.4], equipment failing a safety test must be tagged out of service immediately.",
+          "cites_relevant": true,
+          "prompt_tokens": 358,
+          "completion_tokens": 25
+        },
+        {
+          "query_id": "e11",
+          "query": "Who must be told about a breach of patient data and how fast?",
+          "answerable": true,
+          "refused": false,
+          "cited": [
+            "POL-007#2.1"
+          ],
+          "invalid_citations": [],
+          "answer": "According to [POL-007#2.1], unauthorised access to records must be reported to the privacy officer within 72 hours.",
+          "cites_relevant": true,
+          "prompt_tokens": 365,
+          "completion_tokens": 30
+        },
+        {
+          "query_id": "e12",
+          "query": "How long should an ambulance handover take?",
+          "answerable": true,
+          "refused": false,
+          "cited": [
+            "POL-006#2.2"
+          ],
+          "invalid_citations": [],
+          "answer": "According to [POL-006#2.2], an ambulance handover must be completed within 15 minutes.",
+          "cites_relevant": true,
+          "prompt_tokens": 353,
+          "completion_tokens": 24
+        },
+        {
+          "query_id": "e13",
+          "query": "What is the salary scale for senior consultants?",
+          "answerable": false,
+          "refused": true,
+          "cited": [],
+          "invalid_citations": [],
+          "answer": "INSUFFICIENT_EVIDENCE",
+          "cites_relevant": false,
+          "prompt_tokens": 354,
+          "completion_tokens": 7
+        },
+        {
+          "query_id": "e14",
+          "query": "Are pets allowed to visit patients?",
+          "answerable": false,
+          "refused": true,
+          "cited": [],
+          "invalid_citations": [],
+          "answer": "INSUFFICIENT_EVIDENCE",
+          "cites_relevant": false,
+          "prompt_tokens": 348,
+          "completion_tokens": 7
+        }
+      ]
+    }
+  },
+  "fixed_cases": {
+    "conflicting_clauses": {
+      "answer": "INSUFFICIENT_EVIDENCE",
+      "mentions_both_values": false,
+      "cites_both": false
+    },
+    "irrelevant_context": {
+      "answer": "INSUFFICIENT_EVIDENCE",
+      "refused_correctly": true
+    }
+  }
+}
