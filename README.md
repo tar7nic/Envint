@@ -179,22 +179,14 @@ Measured tokens per `/answer` call: **~357 prompt + ~24–30 completion**. For r
 
 ---
 
-## 9. Failures, known limitations and mitigations
+## 9. Known limitations
 
-Reported rather than hidden:
-
-1. **Hybrid initially collapsed on dev** (NDCG 0.796; d02 0.24, d07 0.38). Cause: BM25 had no stemming, so "verbally"/"verbal" and "approve"/"approved" never matched. Fix (stemming + stopwords, clause IDs kept verbatim) was found and tuned **on dev only**; eval was run once afterwards, so there is no before/after on eval.
-2. **Rerankers miss negation.** `bge-reranker-base` ranked "platelets stored at 20–24 °C" above "platelets must not be refrigerated" (d05) and "below 0 °C" above "must not be stored above 8 °C" for a vaccine query. Not mitigated; reported as a model limitation. The large model scored better but is not immune.
-3. **LLM: conflicting clauses failed.** Given "10 hours" and "8 hours" the 3B model answered `INSUFFICIENT_EVIDENCE` instead of reporting both. It over-refuses on conflicts.
-4. **LLM: wrong-but-valid citation.** One hybrid+rerank answer (e06) was correct in content but cited `POL-010#2.1` instead of `#1.5`. The "citation not in context" metric cannot catch this, because it only checks the ID was retrieved, not that it supports the claim. A claim-support check would be needed.
-5. **False refusals / uncited answers** (up to 17% / 9%): a bare clause lookup ("POL-001 clause 1.2", not a question) was refused by two strategies; several refusals are likely caused by retrieval misses (vector recall 0.75). One answer had no citation.
-6. **Vector retrieval has no score threshold**: it always returns the nearest chunks, so the LLM's refusal rule is the only guard for unsupported queries (an early test assuming otherwise failed and was corrected).
-7. **BM25 on tiny corpora:** BM25-Okapi gives zero IDF to a term present in half the documents, so unit tests need filler documents. Not an issue at 64 chunks.
-8. **Small data:** 7 and 12 scored queries; synthetic corpus written by the author; relevance labels are the author's judgement. Treat sub-0.05 differences as noise.
-9. **Latency numbers vary with machine load** (large reranker p50: 841 ms on dev, 2190 ms on eval). Benchmarks were run on the host, not inside the container. First requests after start are slow (~40–65 s) because models load lazily.
-10. **Cold-start figures** for first-ever runs include model downloads and are not meaningful; steady-state p50/p95 are reported instead.
-11. **Security:** base image `python:3.11-slim` is flagged by the editor's scanner for 3 high-severity OS-level findings; no secrets are stored in the repo (`.env` is git-ignored; hosted-LLM keys go in `.env`); container runs as root (would be non-root in production).
-12. **Not in scope / not done:** no re-ranking of the LLM context beyond top-k, no multi-hop or temporal reasoning, no auth/rate-limit on the API.
+1. **Rerankers miss negation.** `bge-reranker-base` ranked "platelets stored at 20–24 °C" above "platelets must not be refrigerated", and "below 0 °C" above "must not be stored above 8 °C" for a vaccine query. The large model is better but not immune.
+2. **The LLM over-refuses on conflicting sources.** Given "10 hours" and "8 hours", the 3B model returned `INSUFFICIENT_EVIDENCE` instead of reporting both.
+3. **Citation checking is shallow.** It verifies that a cited ID was retrieved, not that it supports the claim. One answer (e06) was correct but cited `POL-010#2.1` instead of `#1.5`, and the metric did not catch it.
+4. **False refusals and uncited answers** (up to 17% / 9%). A bare clause lookup ("POL-001 clause 1.2") was refused by two strategies, and some refusals trace back to retrieval misses.
+5. **No score threshold on vector retrieval.** It always returns the nearest chunks, so the LLM's refusal rule is the only guard against unsupported queries.
+6. **Small evaluation set** (7 dev and 12 eval scored queries), so differences under ~0.05 are not reliable.
 
 ---
 
