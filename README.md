@@ -179,7 +179,121 @@ Measured tokens per `/answer` call: **~357 prompt + ~24–30 completion**. For r
 
 ---
 
-## 9. Known limitations
+## 9. Flow Diagram
+
+```mermaid
+
+flowchart TD
+
+subgraph group_ingest["Policy ingestion"]
+  node_corpus["Policy corpus"]
+  node_chunker["Clause chunker<br/>[chunker.py]"]
+  node_indexer["Embedding indexer<br/>[indexer.py]"]
+  node_qdrant[("Qdrant store")]
+end
+
+subgraph group_retrieval["Retrieval strategies"]
+  node_factory["Strategy factory<br/>[factory.py]"]
+  node_retriever["Retriever interface<br/>[base.py]"]
+  node_vector["Vector search<br/>[vector.py]"]
+  node_bm25["BM25 search<br/>[bm25.py]"]
+  node_hybrid["Hybrid fusion<br/>[hybrid.py]"]
+  node_rrf["RRF fusion<br/>[rrf.py]"]
+  node_reranker["Cross-encoder reranker<br/>[reranker.py]"]
+end
+
+subgraph group_answer["Answer generation"]
+  node_qa["QA orchestration<br/>[qa.py]"]
+  node_prompts["Prompt construction<br/>[prompts.py]"]
+  node_guardrails["Citation validation<br/>[guardrails.py]"]
+  node_llm_client["LLM client<br/>[client.py]"]
+end
+
+subgraph group_service["API and operations"]
+  node_api["FastAPI routes<br/>[main.py]"]
+  node_config["Runtime settings<br/>[config.py]"]
+  node_schemas["Data contracts<br/>[schemas.py]"]
+  node_tracing["Tracing and metrics<br/>[tracing.py]"]
+end
+
+subgraph group_evaluation["Benchmark evaluation"]
+  node_benchmark["Strategy benchmarks"]
+  node_metrics["Ranking metrics<br/>[metrics.py]"]
+  node_pareto["Pareto comparison<br/>[pareto.py]"]
+end
+
+node_user(("API caller"))
+node_llm_service{{"OpenAI-compatible LLM"}}
+
+node_user -->|"submits query"| node_api
+node_corpus -->|"chunks policies"| node_chunker
+node_chunker -->|"indexes chunks"| node_indexer
+node_indexer -->|"embeds and upserts"| node_qdrant
+node_api -->|"builds strategies"| node_factory
+node_api -->|"answers requests"| node_qa
+node_api -->|"records requests"| node_tracing
+node_api -->|"loads settings"| node_config
+node_factory -->|"constructs"| node_vector
+node_factory -->|"constructs"| node_bm25
+node_factory -->|"constructs"| node_hybrid
+node_factory -->|"constructs"| node_reranker
+node_vector -->|"searches vectors"| node_qdrant
+node_vector -->|"embeds queries"| node_indexer
+node_bm25 -->|"loads corpus"| node_qdrant
+node_hybrid -->|"retrieves candidates"| node_vector
+node_hybrid -->|"retrieves candidates"| node_bm25
+node_hybrid -->|"fuses rankings"| node_rrf
+node_reranker -->|"gets candidates"| node_hybrid
+node_api -->|"dispatches strategy"| node_retriever
+node_qa -->|"retrieves evidence"| node_retriever
+node_qa -->|"builds prompt"| node_prompts
+node_qa -->|"requests completion"| node_llm_client
+node_qa -->|"validates answer"| node_guardrails
+node_llm_client -->|"sends completion"| node_llm_service
+node_api -->|"validates API data"| node_schemas
+node_qa -->|"returns answer data"| node_schemas
+node_benchmark -.->|"compares strategies"| node_retriever
+node_benchmark -.->|"scores rankings"| node_metrics
+node_benchmark -.->|"plots trade-offs"| node_pareto
+
+click node_corpus "https://github.com/tar7nic/envint/tree/main/data/corpus"
+click node_chunker "https://github.com/tar7nic/envint/blob/main/app/ingestion/chunker.py"
+click node_indexer "https://github.com/tar7nic/envint/blob/main/app/ingestion/indexer.py"
+click node_api "https://github.com/tar7nic/envint/blob/main/app/api/main.py"
+click node_config "https://github.com/tar7nic/envint/blob/main/app/config.py"
+click node_schemas "https://github.com/tar7nic/envint/blob/main/app/schemas.py"
+click node_factory "https://github.com/tar7nic/envint/blob/main/app/retrieval/factory.py"
+click node_retriever "https://github.com/tar7nic/envint/blob/main/app/retrieval/base.py"
+click node_vector "https://github.com/tar7nic/envint/blob/main/app/retrieval/vector.py"
+click node_bm25 "https://github.com/tar7nic/envint/blob/main/app/retrieval/bm25.py"
+click node_hybrid "https://github.com/tar7nic/envint/blob/main/app/retrieval/hybrid.py"
+click node_rrf "https://github.com/tar7nic/envint/blob/main/app/retrieval/rrf.py"
+click node_reranker "https://github.com/tar7nic/envint/blob/main/app/retrieval/reranker.py"
+click node_qa "https://github.com/tar7nic/envint/blob/main/app/llm/qa.py"
+click node_prompts "https://github.com/tar7nic/envint/blob/main/app/llm/prompts.py"
+click node_guardrails "https://github.com/tar7nic/envint/blob/main/app/llm/guardrails.py"
+click node_llm_client "https://github.com/tar7nic/envint/blob/main/app/llm/client.py"
+click node_tracing "https://github.com/tar7nic/envint/blob/main/app/observability/tracing.py"
+click node_benchmark "https://github.com/tar7nic/envint/tree/main/benchmark"
+click node_metrics "https://github.com/tar7nic/envint/blob/main/benchmark/metrics.py"
+click node_pareto "https://github.com/tar7nic/envint/blob/main/benchmark/pareto.py"
+
+classDef toneNeutral fill:#f8fafc,stroke:#334155,stroke-width:1.5px,color:#0f172a
+classDef toneBlue fill:#dbeafe,stroke:#2563eb,stroke-width:1.5px,color:#172554
+classDef toneAmber fill:#fef3c7,stroke:#d97706,stroke-width:1.5px,color:#78350f
+classDef toneMint fill:#dcfce7,stroke:#16a34a,stroke-width:1.5px,color:#14532d
+classDef toneRose fill:#ffe4e6,stroke:#e11d48,stroke-width:1.5px,color:#881337
+classDef toneIndigo fill:#e0e7ff,stroke:#4f46e5,stroke-width:1.5px,color:#312e81
+classDef toneTeal fill:#ccfbf1,stroke:#0f766e,stroke-width:1.5px,color:#134e4a
+class node_corpus,node_chunker,node_indexer,node_qdrant toneBlue
+class node_factory,node_retriever,node_vector,node_bm25,node_hybrid,node_rrf,node_reranker toneAmber
+class node_qa,node_prompts,node_guardrails,node_llm_client,node_user toneMint
+class node_api,node_config,node_schemas,node_tracing toneRose
+class node_benchmark,node_metrics,node_pareto,node_llm_service toneIndigo
+```
+---
+
+## 10. Known limitations
 
 1. **Rerankers miss negation.** `bge-reranker-base` ranked "platelets stored at 20–24 °C" above "platelets must not be refrigerated", and "below 0 °C" above "must not be stored above 8 °C" for a vaccine query. The large model is better but not immune.
 2. **The LLM over-refuses on conflicting sources.** Given "10 hours" and "8 hours", the 3B model returned `INSUFFICIENT_EVIDENCE` instead of reporting both.
