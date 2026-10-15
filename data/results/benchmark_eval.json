@@ -1,0 +1,769 @@
+{
+  "split": "eval",
+  "reranker": "BAAI/bge-reranker-base",
+  "embedding_model": "BAAI/bge-small-en-v1.5",
+  "results": [
+    {
+      "strategy": "vector",
+      "k": 5,
+      "n_queries": 14,
+      "n_scored": 12,
+      "precision@5": 0.21666666666666667,
+      "recall@5": 0.75,
+      "mrr": 0.75,
+      "ndcg@5": 0.75,
+      "latency_p50_ms": 61.59716000001936,
+      "latency_p95_ms": 74.1013877998739,
+      "cold_start_ms": 8324.888087999852,
+      "rss_mb": 674.111488,
+      "by_query_type": {
+        "exact_clause": {
+          "ndcg": 0.0,
+          "mrr": 0.0,
+          "n": 2
+        },
+        "hard_negative": {
+          "ndcg": 1.0,
+          "mrr": 1.0,
+          "n": 3
+        },
+        "numeric_threshold": {
+          "ndcg": 1.0,
+          "mrr": 1.0,
+          "n": 4
+        },
+        "semantic": {
+          "ndcg": 0.6666666666666666,
+          "mrr": 0.6666666666666666,
+          "n": 3
+        }
+      },
+      "per_query": [
+        {
+          "query_id": "e01",
+          "query_type": "exact_clause",
+          "latency_ms": 8324.888087999852,
+          "ranked": [
+            "POL-001#2.2",
+            "POL-006#1.2",
+            "POL-007#1.4",
+            "POL-007#1.3",
+            "POL-009#1.3"
+          ],
+          "precision": 0.0,
+          "recall": 0.0,
+          "rr": 0.0,
+          "ndcg": 0.0
+        },
+        {
+          "query_id": "e02",
+          "query_type": "hard_negative",
+          "latency_ms": 61.59716000001936,
+          "ranked": [
+            "POL-001#1.2",
+            "POL-001#1.1",
+            "POL-001#2.2",
+            "POL-009#1.3",
+            "POL-009#1.5"
+          ],
+          "precision": 0.4,
+          "recall": 1.0,
+          "rr": 1.0,
+          "ndcg": 1.0
+        },
+        {
+          "query_id": "e03",
+          "query_type": "numeric_threshold",
+          "latency_ms": 60.11007899996912,
+          "ranked": [
+            "POL-001#2.1",
+            "POL-001#1.4",
+            "POL-003#3.1",
+            "POL-010#1.1",
+            "POL-009#1.4"
+          ],
+          "precision": 0.2,
+          "recall": 1.0,
+          "rr": 1.0,
+          "ndcg": 1.0
+        },
+        {
+          "query_id": "e04",
+          "query_type": "hard_negative",
+          "latency_ms": 59.95568100001947,
+          "ranked": [
+            "POL-002#2.3",
+            "POL-002#1.1",
+            "POL-005#1.1",
+            "POL-002#1.2",
+            "POL-004#1.1"
+          ],
+          "precision": 0.4,
+          "recall": 1.0,
+          "rr": 1.0,
+          "ndcg": 1.0
+        },
+        {
+          "query_id": "e05",
+          "query_type": "numeric_threshold",
+          "latency_ms": 70.1009450001493,
+          "ranked": [
+            "POL-003#1.2",
+            "POL-003#1.1",
+            "POL-003#3.2",
+            "POL-003#2.1",
+            "POL-001#2.2"
+          ],
+          "precision": 0.2,
+          "recall": 1.0,
+          "rr": 1.0,
+          "ndcg": 1.0
+        },
+        {
+          "query_id": "e06",
+          "query_type": "semantic",
+          "latency_ms": 60.020224000027156,
+          "ranked": [
+            "POL-010#1.5",
+            "POL-003#2.1",
+            "POL-010#2.2",
+            "POL-005#1.3",
+            "POL-005#1.4"
+          ],
+          "precision": 0.2,
+          "recall": 1.0,
+          "rr": 1.0,
+          "ndcg": 1.0
+        },
+        {
+          "query_id": "e07",
+          "query_type": "numeric_threshold",
+          "latency_ms": 69.6779269999297,
+          "ranked": [
+            "POL-005#1.4",
+            "POL-005#1.3",
+            "POL-010#1.4",
+            "POL-005#1.1",
+            "POL-003#2.1"
+          ],
+          "precision": 0.2,
+          "recall": 1.0,
+          "rr": 1.0,
+          "ndcg": 1.0
+        },
+        {
+          "query_id": "e08",
+          "query_type": "exact_clause",
+          "latency_ms": 70.15663499987568,
+          "ranked": [
+            "POL-009#2.1",
+            "POL-009#2.2",
+            "POL-009#1.1",
+            "POL-009#1.4",
+            "POL-009#1.3"
+          ],
+          "precision": 0.0,
+          "recall": 0.0,
+          "rr": 0.0,
+          "ndcg": 0.0
+        },
+        {
+          "query_id": "e09",
+          "query_type": "hard_negative",
+          "latency_ms": 69.69048599989947,
+          "ranked": [
+            "POL-009#1.3",
+            "POL-009#1.4",
+            "POL-009#1.5",
+            "POL-009#1.2",
+            "POL-009#2.1"
+          ],
+          "precision": 0.4,
+          "recall": 1.0,
+          "rr": 1.0,
+          "ndcg": 1.0
+        },
+        {
+          "query_id": "e10",
+          "query_type": "semantic",
+          "latency_ms": 60.28229699995791,
+          "ranked": [
+            "POL-008#1.4",
+            "POL-008#2.1",
+            "POL-002#1.3",
+            "POL-004#2.1",
+            "POL-008#1.1"
+          ],
+          "precision": 0.4,
+          "recall": 1.0,
+          "rr": 1.0,
+          "ndcg": 1.0
+        },
+        {
+          "query_id": "e11",
+          "query_type": "semantic",
+          "latency_ms": 80.01851699987128,
+          "ranked": [
+            "POL-007#1.3",
+            "POL-006#1.2",
+            "POL-007#2.3",
+            "POL-006#1.3",
+            "POL-009#1.1"
+          ],
+          "precision": 0.0,
+          "recall": 0.0,
+          "rr": 0.0,
+          "ndcg": 0.0
+        },
+        {
+          "query_id": "e12",
+          "query_type": "numeric_threshold",
+          "latency_ms": 59.89187499994841,
+          "ranked": [
+            "POL-006#2.2",
+            "POL-002#2.1",
+            "POL-006#1.1",
+            "POL-006#1.4",
+            "POL-002#1.2"
+          ],
+          "precision": 0.2,
+          "recall": 1.0,
+          "rr": 1.0,
+          "ndcg": 1.0
+        },
+        {
+          "query_id": "e13",
+          "query_type": "unanswerable",
+          "latency_ms": 69.9753060000603,
+          "ranked": [
+            "POL-005#1.4",
+            "POL-005#1.3",
+            "POL-008#1.3",
+            "POL-005#2.1",
+            "POL-003#3.2"
+          ]
+        },
+        {
+          "query_id": "e14",
+          "query_type": "unanswerable",
+          "latency_ms": 60.08950500017818,
+          "ranked": [
+            "POL-010#1.5",
+            "POL-010#2.1",
+            "POL-003#2.2",
+            "POL-010#1.4",
+            "POL-003#2.1"
+          ]
+        }
+      ]
+    },
+    {
+      "strategy": "hybrid",
+      "k": 5,
+      "n_queries": 14,
+      "n_scored": 12,
+      "precision@5": 0.25,
+      "recall@5": 0.9166666666666666,
+      "mrr": 0.8333333333333334,
+      "ndcg@5": 0.8551549589285763,
+      "latency_p50_ms": 13.232816000027015,
+      "latency_p95_ms": 14.879681600041295,
+      "cold_start_ms": 29.491829000107828,
+      "rss_mb": 674.111488,
+      "by_query_type": {
+        "exact_clause": {
+          "ndcg": 0.6309297535714575,
+          "mrr": 0.5,
+          "n": 2
+        },
+        "hard_negative": {
+          "ndcg": 1.0,
+          "mrr": 1.0,
+          "n": 3
+        },
+        "numeric_threshold": {
+          "ndcg": 1.0,
+          "mrr": 1.0,
+          "n": 4
+        },
+        "semantic": {
+          "ndcg": 0.6666666666666666,
+          "mrr": 0.6666666666666666,
+          "n": 3
+        }
+      },
+      "per_query": [
+        {
+          "query_id": "e01",
+          "query_type": "exact_clause",
+          "latency_ms": 29.491829000107828,
+          "ranked": [
+            "POL-001#2.2",
+            "POL-001#1.2",
+            "POL-006#1.2",
+            "POL-001#1.1",
+            "POL-008#1.2"
+          ],
+          "precision": 0.2,
+          "recall": 1.0,
+          "rr": 0.5,
+          "ndcg": 0.6309297535714575
+        },
+        {
+          "query_id": "e02",
+          "query_type": "hard_negative",
+          "latency_ms": 13.232816000027015,
+          "ranked": [
+            "POL-001#1.2",
+            "POL-001#1.1",
+            "POL-001#2.2",
+            "POL-009#1.3",
+            "POL-001#2.1"
+          ],
+          "precision": 0.4,
+          "recall": 1.0,
+          "rr": 1.0,
+          "ndcg": 1.0
+        },
+        {
+          "query_id": "e03",
+          "query_type": "numeric_threshold",
+          "latency_ms": 15.098579000095924,
+          "ranked": [
+            "POL-001#2.1",
+            "POL-001#1.4",
+            "POL-003#3.1",
+            "POL-004#2.1",
+            "POL-002#2.1"
+          ],
+          "precision": 0.2,
+          "recall": 1.0,
+          "rr": 1.0,
+          "ndcg": 1.0
+        },
+        {
+          "query_id": "e04",
+          "query_type": "hard_negative",
+          "latency_ms": 12.657143999831533,
+          "ranked": [
+            "POL-002#2.3",
+            "POL-002#1.1",
+            "POL-005#1.1",
+            "POL-004#1.1",
+            "POL-002#1.2"
+          ],
+          "precision": 0.4,
+          "recall": 1.0,
+          "rr": 1.0,
+          "ndcg": 1.0
+        },
+        {
+          "query_id": "e05",
+          "query_type": "numeric_threshold",
+          "latency_ms": 13.589289000037752,
+          "ranked": [
+            "POL-003#1.2",
+            "POL-003#1.1",
+            "POL-003#3.2",
+            "POL-003#2.1",
+            "POL-001#2.2"
+          ],
+          "precision": 0.2,
+          "recall": 1.0,
+          "rr": 1.0,
+          "ndcg": 1.0
+        },
+        {
+          "query_id": "e06",
+          "query_type": "semantic",
+          "latency_ms": 13.572296999882383,
+          "ranked": [
+            "POL-010#1.5",
+            "POL-003#2.1",
+            "POL-010#2.2",
+            "POL-010#2.1",
+            "POL-006#1.2"
+          ],
+          "precision": 0.2,
+          "recall": 1.0,
+          "rr": 1.0,
+          "ndcg": 1.0
+        },
+        {
+          "query_id": "e07",
+          "query_type": "numeric_threshold",
+          "latency_ms": 12.953790999972625,
+          "ranked": [
+            "POL-005#1.4",
+            "POL-005#1.3",
+            "POL-010#1.4",
+            "POL-005#1.1",
+            "POL-007#2.3"
+          ],
+          "precision": 0.2,
+          "recall": 1.0,
+          "rr": 1.0,
+          "ndcg": 1.0
+        },
+        {
+          "query_id": "e08",
+          "query_type": "exact_clause",
+          "latency_ms": 14.733750000004875,
+          "ranked": [
+            "POL-009#2.1",
+            "POL-009#1.2",
+            "POL-009#2.2",
+            "POL-009#1.1",
+            "POL-009#1.4"
+          ],
+          "precision": 0.2,
+          "recall": 1.0,
+          "rr": 0.5,
+          "ndcg": 0.6309297535714575
+        },
+        {
+          "query_id": "e09",
+          "query_type": "hard_negative",
+          "latency_ms": 13.603568000007726,
+          "ranked": [
+            "POL-009#1.3",
+            "POL-009#1.4",
+            "POL-009#1.5",
+            "POL-009#1.2",
+            "POL-009#2.1"
+          ],
+          "precision": 0.4,
+          "recall": 1.0,
+          "rr": 1.0,
+          "ndcg": 1.0
+        },
+        {
+          "query_id": "e10",
+          "query_type": "semantic",
+          "latency_ms": 12.35168900007011,
+          "ranked": [
+            "POL-008#1.4",
+            "POL-008#2.1",
+            "POL-002#1.3",
+            "POL-004#2.1",
+            "POL-008#1.1"
+          ],
+          "precision": 0.4,
+          "recall": 1.0,
+          "rr": 1.0,
+          "ndcg": 1.0
+        },
+        {
+          "query_id": "e11",
+          "query_type": "semantic",
+          "latency_ms": 14.051786999971227,
+          "ranked": [
+            "POL-006#1.2",
+            "POL-007#2.3",
+            "POL-009#1.1",
+            "POL-007#1.3",
+            "POL-003#2.1"
+          ],
+          "precision": 0.0,
+          "recall": 0.0,
+          "rr": 0.0,
+          "ndcg": 0.0
+        },
+        {
+          "query_id": "e12",
+          "query_type": "numeric_threshold",
+          "latency_ms": 12.896807000061017,
+          "ranked": [
+            "POL-006#2.2",
+            "POL-002#2.1",
+            "POL-006#1.1",
+            "POL-006#1.4",
+            "POL-002#1.2"
+          ],
+          "precision": 0.2,
+          "recall": 1.0,
+          "rr": 1.0,
+          "ndcg": 1.0
+        },
+        {
+          "query_id": "e13",
+          "query_type": "unanswerable",
+          "latency_ms": 12.844133000044167,
+          "ranked": [
+            "POL-005#1.4",
+            "POL-005#1.3",
+            "POL-008#1.3",
+            "POL-005#2.1",
+            "POL-003#3.2"
+          ]
+        },
+        {
+          "query_id": "e14",
+          "query_type": "unanswerable",
+          "latency_ms": 12.435767000170017,
+          "ranked": [
+            "POL-010#2.1",
+            "POL-010#1.4",
+            "POL-003#2.1",
+            "POL-010#1.5",
+            "POL-006#1.4"
+          ]
+        }
+      ]
+    },
+    {
+      "strategy": "hybrid_rerank",
+      "k": 5,
+      "n_queries": 14,
+      "n_scored": 12,
+      "precision@5": 0.23333333333333336,
+      "recall@5": 0.875,
+      "mrr": 0.75,
+      "ndcg@5": 0.766960589714596,
+      "latency_p50_ms": 352.3115529999359,
+      "latency_p95_ms": 406.66208960001313,
+      "cold_start_ms": 5731.370276000007,
+      "rss_mb": 1511.432192,
+      "by_query_type": {
+        "exact_clause": {
+          "ndcg": 0.5,
+          "mrr": 0.5,
+          "n": 2
+        },
+        "hard_negative": {
+          "ndcg": 0.8501834274763037,
+          "mrr": 0.8333333333333334,
+          "n": 3
+        },
+        "numeric_threshold": {
+          "ndcg": 0.9077324383928644,
+          "mrr": 0.875,
+          "n": 4
+        },
+        "semantic": {
+          "ndcg": 0.6740156801915944,
+          "mrr": 0.6666666666666666,
+          "n": 3
+        }
+      },
+      "per_query": [
+        {
+          "query_id": "e01",
+          "query_type": "exact_clause",
+          "latency_ms": 5731.370276000007,
+          "ranked": [
+            "POL-005#1.4",
+            "POL-006#1.2",
+            "POL-007#1.3",
+            "POL-007#1.4",
+            "POL-004#1.2"
+          ],
+          "precision": 0.0,
+          "recall": 0.0,
+          "rr": 0.0,
+          "ndcg": 0.0
+        },
+        {
+          "query_id": "e02",
+          "query_type": "hard_negative",
+          "latency_ms": 400.0435279999692,
+          "ranked": [
+            "POL-001#2.2",
+            "POL-001#1.2",
+            "POL-001#1.3",
+            "POL-009#1.5",
+            "POL-001#1.1"
+          ],
+          "precision": 0.4,
+          "recall": 1.0,
+          "rr": 0.5,
+          "ndcg": 0.626665273802673
+        },
+        {
+          "query_id": "e03",
+          "query_type": "numeric_threshold",
+          "latency_ms": 369.79102000009334,
+          "ranked": [
+            "POL-001#2.1",
+            "POL-001#1.4",
+            "POL-003#3.1",
+            "POL-004#2.1",
+            "POL-010#1.1"
+          ],
+          "precision": 0.2,
+          "recall": 1.0,
+          "rr": 1.0,
+          "ndcg": 1.0
+        },
+        {
+          "query_id": "e04",
+          "query_type": "hard_negative",
+          "latency_ms": 352.3115529999359,
+          "ranked": [
+            "POL-002#2.3",
+            "POL-006#2.2",
+            "POL-002#1.2",
+            "POL-002#1.1",
+            "POL-005#1.1"
+          ],
+          "precision": 0.4,
+          "recall": 1.0,
+          "rr": 1.0,
+          "ndcg": 0.9238850086262381
+        },
+        {
+          "query_id": "e05",
+          "query_type": "numeric_threshold",
+          "latency_ms": 323.54491899991444,
+          "ranked": [
+            "POL-003#1.2",
+            "POL-003#1.1",
+            "POL-003#3.1",
+            "POL-004#1.2",
+            "POL-001#1.2"
+          ],
+          "precision": 0.2,
+          "recall": 1.0,
+          "rr": 1.0,
+          "ndcg": 1.0
+        },
+        {
+          "query_id": "e06",
+          "query_type": "semantic",
+          "latency_ms": 337.84997700013264,
+          "ranked": [
+            "POL-003#2.2",
+            "POL-010#1.5",
+            "POL-003#2.1",
+            "POL-010#2.1",
+            "POL-010#2.2"
+          ],
+          "precision": 0.2,
+          "recall": 1.0,
+          "rr": 0.5,
+          "ndcg": 0.6309297535714575
+        },
+        {
+          "query_id": "e07",
+          "query_type": "numeric_threshold",
+          "latency_ms": 376.6728200000671,
+          "ranked": [
+            "POL-005#1.3",
+            "POL-005#1.4",
+            "POL-006#1.4",
+            "POL-005#1.1",
+            "POL-005#1.2"
+          ],
+          "precision": 0.2,
+          "recall": 1.0,
+          "rr": 0.5,
+          "ndcg": 0.6309297535714575
+        },
+        {
+          "query_id": "e08",
+          "query_type": "exact_clause",
+          "latency_ms": 351.24703199994656,
+          "ranked": [
+            "POL-009#1.2",
+            "POL-009#2.2",
+            "POL-006#1.2",
+            "POL-009#2.1",
+            "POL-010#1.2"
+          ],
+          "precision": 0.2,
+          "recall": 1.0,
+          "rr": 1.0,
+          "ndcg": 1.0
+        },
+        {
+          "query_id": "e09",
+          "query_type": "hard_negative",
+          "latency_ms": 416.589932000079,
+          "ranked": [
+            "POL-009#1.4",
+            "POL-009#1.3",
+            "POL-009#1.2",
+            "POL-009#1.5",
+            "POL-001#1.1"
+          ],
+          "precision": 0.4,
+          "recall": 1.0,
+          "rr": 1.0,
+          "ndcg": 1.0
+        },
+        {
+          "query_id": "e10",
+          "query_type": "semantic",
+          "latency_ms": 337.1816060000583,
+          "ranked": [
+            "POL-008#1.4",
+            "POL-003#2.3",
+            "POL-002#1.3",
+            "POL-008#2.2",
+            "POL-004#2.1"
+          ],
+          "precision": 0.2,
+          "recall": 0.5,
+          "rr": 1.0,
+          "ndcg": 0.7601875334318685
+        },
+        {
+          "query_id": "e11",
+          "query_type": "semantic",
+          "latency_ms": 369.0105549999316,
+          "ranked": [
+            "POL-007#1.3",
+            "POL-007#2.1",
+            "POL-004#2.1",
+            "POL-007#2.3",
+            "POL-006#2.1"
+          ],
+          "precision": 0.2,
+          "recall": 1.0,
+          "rr": 0.5,
+          "ndcg": 0.6309297535714575
+        },
+        {
+          "query_id": "e12",
+          "query_type": "numeric_threshold",
+          "latency_ms": 367.22836199987796,
+          "ranked": [
+            "POL-006#2.2",
+            "POL-002#2.1",
+            "POL-006#1.1",
+            "POL-006#2.1",
+            "POL-006#1.4"
+          ],
+          "precision": 0.2,
+          "recall": 1.0,
+          "rr": 1.0,
+          "ndcg": 1.0
+        },
+        {
+          "query_id": "e13",
+          "query_type": "unanswerable",
+          "latency_ms": 349.56683499990504,
+          "ranked": [
+            "POL-005#1.1",
+            "POL-005#1.3",
+            "POL-008#1.3",
+            "POL-003#3.2",
+            "POL-002#1.1"
+          ]
+        },
+        {
+          "query_id": "e14",
+          "query_type": "unanswerable",
+          "latency_ms": 299.1023149998,
+          "ranked": [
+            "POL-010#1.2",
+            "POL-010#1.4",
+            "POL-003#1.1",
+            "POL-010#2.1",
+            "POL-010#1.3"
+          ]
+        }
+      ]
+    }
+  ]
+}
